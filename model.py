@@ -201,6 +201,13 @@ def predict_forest(forest, features):
     pred = np.array([predict_tree(tree_inf['tree'],features) for tree_inf in forest])
     return combine_predictions(pred)
 
-# Step 15 - accuracy (not yet solved)
-# TODO: implement
+# Step 15 - accuracy
+def accuracy(predictions, labels):
+    # TODO: compute the fraction of entries where predictions equals labels
+    ans = 0
+    for i in range(len(predictions)):
+        if predictions[i] == labels[i]:
+            ans+=1
+    
+    return ans/len(predictions)
 
