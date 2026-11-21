@@ -168,8 +168,22 @@ def feature_subset(num_features, num_to_pick, rng):
     idx= rng.choice(num_features,size=num_to_pick,replace=False)
     return idx
 
-# Step 12 - train_forest (not yet solved)
-# TODO: implement
+# Step 12 - train_forest
+import numpy as np
+
+def train_forest(features, labels, num_trees=10, max_depth=10, min_samples_split=2, num_features_per_split=None, random_state=0):
+    rng = np.random.default_rng(random_state)
+    
+    d = features.shape[1]
+    if num_features_per_split is None:
+        num_features_per_split = max(1, int(round(np.sqrt(d))))
+    forest = []
+    for _ in range(num_trees):
+        x_boot,y_boot = bootstrap_sample(features,labels,rng)
+        selected_features = feature_subset(d,num_features_per_split,rng)
+        tree = build_tree(x_boot,y_boot,max_depth=max_depth,min_samples_split=min_samples_split,feature_subset=selected_features)
+        forest.append({'tree':tree,'feature_indices': selected_features})
+    return forest
 
 # Step 13 - combine_predictions (not yet solved)
 # TODO: implement
