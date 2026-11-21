@@ -160,8 +160,13 @@ def bootstrap_sample(features, labels, rng):
 
     return (ans1,ans2)
 
-# Step 11 - feature_subset (not yet solved)
-# TODO: implement
+# Step 11 - feature_subset
+import numpy as np
+
+def feature_subset(num_features, num_to_pick, rng):
+    # TODO: return num_to_pick distinct random feature indices from range(num_features) using rng.
+    idx= rng.choice(num_features,size=num_to_pick,replace=False)
+    return idx
 
 # Step 12 - train_forest (not yet solved)
 # TODO: implement
